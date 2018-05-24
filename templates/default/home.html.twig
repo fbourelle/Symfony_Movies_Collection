@@ -1,0 +1,32 @@
+{# commentaires twig #}
+{# templates/default/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<h2>Movies</h2>
+
+    {%  for movie in movies %}
+        <article>
+            <a href="{{ path('movie_detail', {'id': movie.id}) }}" title="{{ movie.title }}">
+                <img src="{{ asset('img/posters/' ~ movie.image) }}" alt="{{ movie.title }}">
+            </a>
+        </article>
+    {% endfor %}
+
+    <div class="navpage">
+        <ul>
+            <li><a href="{{ path('home', {'page': 1}) }}">First Page</a></li>
+            {% if page > 1 %}
+                <li><a href="{{ path('home', {'page': prevPage}) }}">Prev Page</a></li>
+            {% endif %}
+
+            {% if page < lastPage %}
+                <li><a href="{{ path('home', {'page': nextPage}) }}">Next Page</a></li>
+            {% endif %}
+                <li><a href="{{ path('home', {'page': lastPage}) }}">Last Page</a></li>
+
+        </ul>
+    </div>
+{% endblock %}
+
+{% block title %}Movies !{% endblock %}

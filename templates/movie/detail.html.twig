@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ movie.title }} | {{ parent() }}{% endblock %}
+
+{% block bg %}{% endblock %}
+
+
+{% block main %}
+
+    <div class="card2">
+
+        <div class="poster">
+            <img src="{{ asset('img/posters/' ~ movie.image) }}" alt="{{ movie.title }}">
+        </div>
+
+        <div class="detail">
+            <h2>{{ movie.title }}</h2>
+            {% if app.user %}
+                {%  if is_watchlistitem %}
+                    <a href="{{ path('watchlistdelete', {'id_movie': movie.id}) }}" title="remove watchlistitems">
+                        <i class="material-icons md-36">remove_circle</i>
+                    </a>
+                    <a href="{{ path('watchlistview') }}" title="watch my watchlist">
+                        <h5>See my watchlist</h5>
+                    </a>
+                {% else %}
+                    <a href="{{ path('watchlist', {'id_movie': movie.id}) }}" title="add watchlistitems">
+                        <i class="material-icons md-36">add_circle</i>
+                    </a>
+                {% endif %}
+            {% endif %}
+            <hr>
+            <h5>
+                <strong>Director :</strong>
+                    {{ movie.directors }} |
+                <strong>Actors :</strong>
+                    {{ movie.actors|replace({' /': ","}) }}
+            </h5>
+            <div class="rating" for="rating"><span class="star">★</span><strong>{{ movie.rating }}</strong>/10</div>
+            {#<h5><strong>Durée :</strong> {{ heure|round }}:{{ minute|round }}</h5>#}
+            {% set heure = movie.runtime/60 %}
+            {% set minute = movie.runtime % 60 %}
+            {% set minute = (minute < 10) ? '0'~minute : minute %}
+            <h5><strong>Durée :</strong> {{ heure|round }}:{{ minute }}</h5>
+            <p>{{ movie.plot }}</p>
+
+            <a href="http://www.imdb.com/title/{{ movie.image|replace({'.jpg': ""}) }}" target="_blank" title="Fiche IMDB"><img id="imdb" src="{{ asset('img/imdb_logo.png') }}" alt=""></a>
+
+            <br>
+            <div class="videoWrapper">
+                <iframe width="480px" height="370px" src="https://www.youtube.com/embed/{{ movie.trailerId }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+                <br>
+            <small><span>Date d'ajout : {{ movie.dateCreated|date("m/d/Y") }}</span></small>
+
+                <hr>
+                <h3>Post a review</h3>
+            {% if app.user %}
+                    <div>
+                        {{ form_start(reviewForm) }}
+                        {{ form_widget(reviewForm) }}
+                        <button class="btn btn-primary">Send !</button>
+                        {{ form_end(reviewForm) }}
+                    </div>
+            {%  else %}
+                <div><a class="nav-link" href="{{ path('login') }}" title="About">
+                    Connectez-vous</a> pour publier un commentaire</div>
+            {% endif %}
+
+            <hr>
+            <h3>Reviews</h3>
+
+
+            {% for reviews in movie.reviews %}
+
+                <h5>{{ reviews.title }} | by <span class="review_info">{{ reviews.author.username }}</span> | posted : <span class="review_info">{{ reviews.dateCreated|date('Y-m-d H:i') }}</span></h5>
+                <p>{{ reviews.content }}</p>
+                    {% if app.user %}
+                        {% if reviews.author.username == app.user.username %}
+                            <div class="logo">
+                                <a href="{{ path('delete_review', {'id': reviews.id}) }}">
+                                    Delete this review
+                                    <i class="material-icons md-16">close</i>
+                                </a>
+                            </div>
+                        {%  endif %}
+                    {%  endif %}
+
+                {% if not loop.last %}<hr>{% endif %}
+
+            {% else %}
+                <p>No review</p>
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+    <div class="footer_card" style="background-image: url('{{ asset('img/backgrounds/'~movie.image) }}');">
+
+    </div>
+{% endblock %}
+

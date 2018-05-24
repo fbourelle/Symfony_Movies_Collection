@@ -1,0 +1,267 @@
+header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%
+}
+
+nav {
+}
+
+body {
+    background-color: white;
+}
+
+h2, li, h3{
+    font-family: 'IBM Plex Serif', serif;
+    color: deepskyblue;
+}
+
+a {
+    color: grey;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: deepskyblue;
+}
+
+.review_info {
+    color: deepskyblue;
+}
+
+h1 {
+    font-family: 'IBM Plex Serif', serif;
+    color: black;
+    font-size: 1.5em;
+    letter-spacing: 0.2em;
+}
+
+form{
+    margin-bottom: 1em;
+}
+
+
+footer{
+    background-color: white;
+    color: grey;
+    font-family: 'IBM Plex Serif', serif;
+    text-align: center;
+}
+
+h5 {
+    font-family: 'Tajawal', sans-serif;
+}
+article {
+    margin: 1em;
+    float: left;
+    display: flex;
+    align-items: stretch;
+    text-align: center;
+}
+
+
+article img {
+    width : 10em;
+    height: 14em;
+    transition: all 0.5s ease;
+}
+
+article img:hover {
+    transform: scale(1.1);
+    overflow: hidden;
+    /*width : 20em;*/
+    /*height: 28em;*/
+}
+
+
+.content {
+    background-color:  	rgb(240, 240, 240);
+    padding-top : 130px;
+    overflow: hidden;
+}
+
+ul, li:nth-child(n+2){
+    list-style-type: none;
+    margin-right: 2em;
+}
+
+li:nth-child(n+2){
+    list-style-type: none;
+    margin-right: 2em;
+}
+
+li {
+    /*vertical-align: bottom;*/
+}
+main {
+    overflow: hidden;
+}
+
+main h2 {
+    text-align: center;
+    display: flex;
+}
+
+.container{
+
+}
+p, small{
+    font-family: 'Tajawal', sans-serif;
+}
+
+#search_field {
+    width: 200px;
+    height: auto;
+    float: right;
+}
+
+.logo {
+    display: flex;
+    align-items: first baseline;
+    flex-wrap: wrap;
+}
+
+img {
+    margin-right: 1em;
+}
+
+.card2 {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    align-content: start;
+    justify-content: flex-start;
+    flex: 1 5;
+    flex-wrap: nowrap;
+    /*flex-flow: wrap;*/
+}
+
+@media (max-width:1000px) {
+    .card2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        align-content: start;
+        justify-content: flex-start;
+        flex: 1 5;
+        flex-wrap: nowrap;
+        /*background-color: yellowgreen;*/
+        /*flex-flow: wrap;*/
+    }
+
+    .poster {
+        flex-grow: 0;
+        order: 1;
+    }
+
+    .detail {
+        order: 0;
+        flex-grow: 1;
+        padding-right: 0;
+    }
+
+    /*.videoWrapper {*/
+        /*position: relative;*/
+        /*padding-bottom: 56.25%; !* 16:9 *!*/
+        /*padding-top: 25px;*/
+        /*height: 0;*/
+        /*z-index: 1000;*/
+    /*}*/
+    /*.videoWrapper iframe {*/
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*left: 0;*/
+        /*width: 100%;*/
+        /*height: 100%;*/
+    /*}*/
+}
+
+@media (min-width:1000px) {
+    .detail {
+        padding-right: 5em;
+    }
+
+}
+.header_register {
+    background-image: url("../img/backgrounds/tt0054047.jpg");
+    background-position: 0px 600px;
+    height: 16em;
+    background-color: #0088CC;
+    width:auto;
+    background-size: cover;
+    /*background-position: center;*/
+}
+
+
+.footer_card {
+    height: 5em;
+    background-color: #0088CC;
+    width:auto;
+    background-size: cover;
+    background-position: 0px 500px;
+    background-attachment: fixed;
+}
+.poster {
+    flex-grow: 0;
+    /*width: 30%;*/
+}
+
+.poster img {
+    width: 20em;
+    border-left: 10px solid deepskyblue;
+    margin-bottom: 1em;
+}
+.detail {
+    order: 0;
+    /*width: 70%;*/
+    /*background-color: #8959A8;*/
+    /*padding-right: 5em;*/
+ }
+
+.detail hr {
+    border: 1px solid white;
+}
+
+.detail h2{
+    text-align: left;
+    flex: auto;
+    font-family: 'IBM Plex Serif', serif;
+}
+
+.star {
+    color: orange;
+}
+
+#imdb {
+    width: 5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.rating {
+    font-size: 2em;
+}
+
+.videoWrapper {
+    /*position: relative;*/
+    /*padding-bottom: 56.25%; !* 16:9 *!*/
+    /*padding-top: 25px;*/
+    /*height: 0;*/
+}
+.videoWrapper iframe {
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+}
+
+.navpage {
+    display: block;
+}
+
+i {
+
+    color: deepskyblue;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Movies !{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {#<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">#}
+        <link href="https://fonts.googleapis.com/css?family=Tajawal:200,300,400,500,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif" rel="stylesheet">
+
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('img/site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ asset('img/safari-pinned-tab.svg') }}" color="#5bbad5">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+        <meta name="msapplication-TileColor" content="#ffc40d">
+        <meta name="msapplication-config" content="{{ asset('img/browserconfig.xml') }}">
+        <meta name="theme-color" content="#ffffff">
+
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                {#<div class="logo">#}
+                   {#<a href="{{ path('home') }}" title="Home">#}
+                       {#<img width="60px" src="{{ asset('img/godard_nb.png') }}" alt="Movies' Logo">#}
+                  {#</a>#}
+                    {#<h1>Movies !</h1>#}
+                {#</div>#}
+                {#<hr>#}
+                <nav>
+                    <ul class="logo">
+                        {#<ul class="nav nav-pills">#}
+
+                            <li>
+                                <a href="{{ path('home') }}" title="Home">
+                                    <img width="60px" src="{{ asset('img/godard_nb.png') }}" alt="Movies' Logo">
+                                </a>
+                            </li>
+                            <li><h1>Movies !</h1></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ path('home') }}" title="Home">home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ path('legal_stuff') }}" title="Legal">Legal</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ path('about_us') }}" title="About">About</a></li>
+                            {% if app.user %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('logout') }}" title="Logout">Logout</a></li>
+                                <li>Bonjour {{ app.user.username }}</li>
+                            {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ path('register') }}" title="Register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ path('login') }}" title="Login">Login</a></li>
+
+                            {% endif %}
+                            <li>
+                               <form method="get">
+                                 <input type="search" placeholder="Recherche" id="search_field">
+                               </form>
+                            </li>
+                    </ul>
+                    <hr>
+                </nav>
+                {#<form method="get">#}
+                    {#<input type="search" placeholder="Recherche" id="search_field">#}
+                {#</form>#}
+            </div>
+
+
+        </header>
+
+
+
+        <div class="container content">
+            {#affichage des messages flash#}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <main>
+
+               {% block main %}{% endblock %}
+
+            </main>
+
+        </div>
+        <footer>
+            <hr>
+            {# gsylvestre@gmail.com #}
+
+            {# crée une variable #}
+            {% set letters = "movies"|split('') %}
+            {# boucle sur le tableau de lettres #}
+            {% for letter in letters %}
+                {# version oneliner avec opérateur ternaire #}
+                {{ loop.index % 2 == 0 ? letter : letter|upper }}
+                {% if loop.index % 2 == 0 %}
+                    {{ letter }}
+                {% else %}
+                    {{ letter|upper }}
+                {% endif %}
+            {% endfor %}
+            <small>&copy; {{ "now"|date('Y') }} {{ "Frédéric Bourelle"|upper }}</small>
+        </footer>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+        <script
+                src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+
+        <script
+                src="{{ asset('js/movie.js') }}">
+        </script>
+    </body>
+</html>

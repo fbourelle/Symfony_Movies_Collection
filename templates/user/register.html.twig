@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{%  block main %}
+    <div class="header_register">
+        {#<img src="{{ asset('img/backgrounds/tt0054047.jpg') }}" alt="Rejoin us">#}
+    </div>
+    <h2>Rejoin us !</h2>
+
+    {#affichage du formulaire d'inscrption#}
+    {{ form(registerForm) }}
+{% endblock %}
+
+{% block title %}Register | {{ parent() }} {% endblock %}
+

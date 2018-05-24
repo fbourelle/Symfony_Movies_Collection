@@ -1,0 +1,20 @@
+{# commentaires twig #}
+{# templates/default/home.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h2>Watchlistitem' Movies {{ app.user.username }}</h2>
+
+    {%  for movie in watchlistitems %}
+        <article>
+            <a href="{{ path('movie_detail', {'id': movie.movie.id}) }}" title="{{ movie.movie.title }}">
+                <img src="{{ asset('img/posters/' ~ movie.movie.image) }}" alt="{{ movie.movie.title }}">
+            </a>
+
+        </article>
+    {% endfor %}
+
+
+{% endblock %}
+
+{% block title %}Wachlistitem Movies !{% endblock %}
